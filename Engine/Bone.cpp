@@ -1,6 +1,6 @@
 #include "Bone.h"
 
-void Bone::Init(int in_x, int in_y)
+void Bone::Init(float in_x, float in_y)
 { 
 	x = in_x; 
 	y = in_y; 
@@ -13,14 +13,14 @@ void Bone::Update()
 
 void Bone::ProcessConsumptionForward(const DogForward& dogf)
 {
-	int fright = dogf.GetX() + 16;
-	int fleft = dogf.GetX() + 9;
-	int ftop = dogf.GetY() - dogf.GetHeight();
-	int fbottom = dogf.GetY();
-	int tright = x + Width;
-	int tleft = x;
-	int ttop = y - Height;
-	int tbottom = y;
+	float fright = dogf.GetX() + 16; 
+	float fleft = dogf.GetX() + 9;
+	float ftop = dogf.GetY() - dogf.GetHeight();
+	float fbottom = dogf.GetY();
+	float tright = x + Width; 
+	float tleft = x; 
+	float ttop = y - Height; 
+	float tbottom = y;
 
 	if (
 		fleft <= tright&&
@@ -35,14 +35,14 @@ void Bone::ProcessConsumptionForward(const DogForward& dogf)
 
 void Bone::ProcessConsumptionBackward(const DogBackward& dogb)
 {
-	int bright = dogb.GetX() - 16;
-	int bleft = dogb.GetX() - 9;
-	int btop = dogb.GetY() - dogb.GetHeight();
-	int bbottom = dogb.GetY();
-	int tright = x + Width;
-	int tleft = x;
-	int ttop = y - Height;
-	int tbottom = y;
+	float bright = dogb.GetX() - 16;
+	float bleft = dogb.GetX() - 9;
+	float btop = dogb.GetY() - dogb.GetHeight();
+	float bbottom = dogb.GetY();
+	float tright = x + Width;
+	float tleft = x;
+	float ttop = y - Height;
+	float tbottom = y;
 
 	if (
 		bleft <= tright&&
@@ -55,47 +55,50 @@ void Bone::ProcessConsumptionBackward(const DogBackward& dogb)
 	}
 }
 
-void Bone::Draw(Graphics & gfx) const
-{
-	gfx.PutPixel(x + 1, y, 255, 255, 255);
-	gfx.PutPixel(x + 2, y, 255, 255, 255);
-	gfx.PutPixel(x + 9, y, 255, 255, 255);
-	gfx.PutPixel(x + 10, y, 255, 255, 255);
-
-	gfx.PutPixel(x, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 3, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 4, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 5, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 6, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 7, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 8, y - 1, 255, 255, 255);
-	gfx.PutPixel(x + 11, y - 1, 255, 255, 255);
-
-	gfx.PutPixel(x, y - 2, 255, 255, 255);
-	gfx.PutPixel(x + 11, y - 2, 255, 255, 255);
-
-	gfx.PutPixel(x + 1, y - 3, 255, 255, 255);
-	gfx.PutPixel(x + 10, y - 3, 255, 255, 255);
-
-	gfx.PutPixel(x, y - 4, 255, 255, 255);
-	gfx.PutPixel(x + 11, y - 4, 255, 255, 255);
-
-	gfx.PutPixel(x, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 3, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 4, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 5, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 6, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 7, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 8, y - 5, 255, 255, 255);
-	gfx.PutPixel(x + 11, y - 5, 255, 255, 255);
-
-	gfx.PutPixel(x + 2, y - 6, 255, 255, 255);
-	gfx.PutPixel(x + 3, y - 6, 255, 255, 255);
-	gfx.PutPixel(x + 9, y - 6, 255, 255, 255);
-	gfx.PutPixel(x + 10, y - 6, 255, 255, 255);
-}
-
 bool Bone::IsEaten() const
 {
 	return isEaten;
+}
+
+void Bone::Draw(Graphics & gfx) const
+{
+	const int x_int = int(x);
+	const int y_int = int(y);
+
+	gfx.PutPixel(x_int + 1, y_int, 255, 255, 255);
+	gfx.PutPixel(x_int + 2, y_int, 255, 255, 255);
+	gfx.PutPixel(x_int + 9, y_int, 255, 255, 255);
+	gfx.PutPixel(x_int + 10, y_int, 255, 255, 255);
+
+	gfx.PutPixel(x_int, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 3, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 4, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 5, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 6, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 7, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 8, y_int - 1, 255, 255, 255);
+	gfx.PutPixel(x_int + 11, y_int - 1, 255, 255, 255);
+
+	gfx.PutPixel(x_int, y_int - 2, 255, 255, 255);
+	gfx.PutPixel(x_int + 11, y_int - 2, 255, 255, 255);
+
+	gfx.PutPixel(x_int + 1, y_int - 3, 255, 255, 255);
+	gfx.PutPixel(x_int + 10, y_int - 3, 255, 255, 255);
+
+	gfx.PutPixel(x_int, y_int - 4, 255, 255, 255);
+	gfx.PutPixel(x_int + 11, y_int - 4, 255, 255, 255);
+
+	gfx.PutPixel(x_int, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 3, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 4, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 5, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 6, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 7, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 8, y_int - 5, 255, 255, 255);
+	gfx.PutPixel(x_int + 11, y_int - 5, 255, 255, 255);
+
+	gfx.PutPixel(x_int + 2, y_int - 6, 255, 255, 255);
+	gfx.PutPixel(x_int + 3, y_int - 6, 255, 255, 255);
+	gfx.PutPixel(x_int + 9, y_int - 6, 255, 255, 255);
+	gfx.PutPixel(x_int + 10, y_int - 6, 255, 255, 255);
 }
